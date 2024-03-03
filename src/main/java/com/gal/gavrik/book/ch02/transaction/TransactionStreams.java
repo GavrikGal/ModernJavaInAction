@@ -1,8 +1,9 @@
-package com.gal.gavrik.book.ch02;
+package com.gal.gavrik.book.ch02.transaction;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 public class TransactionStreams {
@@ -55,18 +56,18 @@ public class TransactionStreams {
 
         transactions.stream()
                 .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
-                .map(Transaction::getValue)
+                .mapToInt(Transaction::getValue)
                 .forEach(System.out::println);
         System.out.println();
 
-        Integer maxTransactionValue = transactions.stream()
-                .map(Transaction::getValue)
-                .max(Integer::compareTo).orElse(null);
-        System.out.println(maxTransactionValue);
+        OptionalInt maxTransactionValue = transactions.stream()
+                .mapToInt(Transaction::getValue)
+                .max();
+        System.out.println(maxTransactionValue.getAsInt());
         System.out.println();
 
         Transaction minValueTransaction = transactions.stream()
-                .min(Comparator.comparing(Transaction::getValue)).orElse(null);
+                .min(Comparator.comparingInt(Transaction::getValue)).orElse(null);
         System.out.println(minValueTransaction);
 
     }

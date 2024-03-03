@@ -1,4 +1,4 @@
-package com.gal.gavrik.book.ch02;
+package com.gal.gavrik.book.ch02.transaction;
 
 public class Trader {
     private final String name;
