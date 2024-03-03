@@ -27,5 +27,6 @@ public class MenuDemo {
                 .collect(toList());
         System.out.println(threeHighCaloricDishNames);
 
+
     }
 }
